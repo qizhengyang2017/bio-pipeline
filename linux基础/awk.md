@@ -92,3 +92,12 @@ zcat TDF_PB_10_14-1_S1_L002_R1_001.fastq.gz TDF_PB_10_14-2_S1_L003_R1_001.fastq.
 gzip -dc TDF_PB_10_14_1.fq.gz |awk '{if(NR%2==1){print}else{print substr($1,0,75)}}' |gzip  >TDF_PB_10_14_S1_L001_R1_001.fastq.gz
 ```
 
+
+
+使用外部变量
+
+```sh
+for i in `ls  -d Cluster_[0-9]*`;do grep -i -E 'signal transduction|glucose related pathway|cell death|oxidative phosphorylation|lipid metablism|amino acid metablism' $i/${i}_KEGGenrich.txt | awk -v n=$i 'BEGIN{FS=OFS="\t"}{print n,$1,$2,$3,$4,$5,$6}' > ${i}_KEGGenrich.txt; done
+# -d, –directory 将目录象文件一样显示，而不是显示其下的文件。
+```
+

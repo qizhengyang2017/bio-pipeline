@@ -1,6 +1,23 @@
 ## 主题
 
 ```R
+theme(panel.border = element_rect(fill=NA,color="black", size=1, linetype="solid"),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      axis.ticks =element_line(color='black',size=1),
+      axis.text = element_text(size=8,color = 'black'),
+      axis.title=element_text(size=8,face="plain",color="black"),
+      plot.title = element_text(size=8,colour = "black", color = "black"),
+      legend.title=element_text(size=8,face="plain",color="black"),
+      legend.text =element_text(size=8),
+      legend.key.size=unit(0.2,'in')
+     )
+
+
+
+
+
+
 mytheme <-   theme(
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),

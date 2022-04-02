@@ -25,5 +25,9 @@ sed -n '5,10p' test.txt
 #插入行子命令i
 #将文件中1-2行上边都添加一行内容A
 sed '1,2i A'
+
+
+# 连续替换
+for i in `ls`;do sed -i '1 s/Feature ID/Gene ID/;1 s/Feature Name/Gene_name/' $i;done
 ```
 

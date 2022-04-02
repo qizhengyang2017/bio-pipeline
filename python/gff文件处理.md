@@ -13,6 +13,7 @@ with open(sys.argv[1]) as f:
         line = line.strip()
         field = line.split('\t')
         attribute = field[8]
+        # 2022-03-22，这里为什么不用"gene_id (.+?);"这样的形式
         gene_name = re.findall(r'gene_id "(.+?)";',attribute)
         gene_name = ''.join(gene_name)
         gene_name = 'gene_name "' + gene_name + '"'

@@ -7,6 +7,16 @@ bcftools merge merge.a.vcf.gz merge.b.vcf.gz -o merge.vcf
 
 该命令要求输入文件必须是经过`bgzip`压缩的文件， 而且还需要有`.tbi`的索引。vcf文件需要有表头
 
+2022-03-24：表头要怎样才行？ 能同时merge多个文件吗
+
+INFO FORMAT里的信息，表头中必须要有
+
+```
+##fileformat=VCFv4.2
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  GH0086  GH0087
+```
+
 
 
 ```bash

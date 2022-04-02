@@ -1,23 +1,31 @@
-# Description: du228份亚洲棉call SNP
-# date: 2022年02月18日
-# /data/cotton/yqzhang/zyqi/Ga_du_228
+# Description: ma1081 call SNP; fastp filter
+# /data/cotton/zyqi/ma_2021_remain_8/snp_calling_sampleName_02.sh
 
 
+
+module load sratoolkit/2.9.6
+module load fastp/0.23.0
 module load sentieon/201808.07
 module load SAMtools/1.9
 
 # input
-basedir=/data/cotton/yqzhang/zyqi/Ga_du_228
-mkdir SNP_call
+basedir=/data/cotton/zyqi/ma_2021_remain_8
+mkdir SNP_call report data clean_data
+mv SRR*/*sra data
 
-
-cat $basedir/sample_00 |while read i
+cat $basedir/srr_remain_8.txt |while read i
 do
+sra=$basedir/data/$i.sra
+report=$basedir/report/$i.html
+json=$basedir/report/$i.json
 
-fq1=$basedir/data/${i}_1.clean.fq.gz
-fq2=$basedir/data/${i}_2.clean.fq.gz
+fq1_raw=$basedir/clean_data/${i}.sra_1.fastq
+fq2_raw=$basedir/clean_data/${i}.sra_2.fastq
 
-fasta=/data/cotton/zyqi/genome/Lachesis_assembly_changed.fa
+fq1=$basedir/clean_data/${i}_1.clean.fq.gz
+fq2=$basedir/clean_data/${i}_2.clean.fq.gz
+
+fasta=/data/cotton/zyqi/vcf_call_101/Ghirsutum_genome.fasta
 
 # output dir
 workdir=$basedir/SNP_call/$i
@@ -38,7 +46,13 @@ outvcf=$i.vcf
 
 
 # queue
-bsub -J ${i} -o %J.${i}.out -e %J.${i}.err -n $nt -q q2680v2 "
+bsub -J ${i} -o %J.${i}.out -e %J.${i}.err -n $nt -q normal "
+
+# get clean data
+
+fasterq-dump --threads $nt --progress --split-3 $sra -O $basedir/clean_data && \
+fastp -w $nt -i $fq1_raw -I $fq2_raw -o $fq1 -O $fq2 -h $report -j $json && \
+rm $fq1_raw $fq2_raw $sra && echo successfully delete $fq1_raw $fq2_raw $sra
 
 
 # ********************************************calling **************************************
@@ -72,6 +86,7 @@ sentieon driver -r $fasta -t $nt -i $sortedCram --algo LocusCollector --fun scor
 
 sentieon driver -r $fasta -t $nt -i $sortedCram --algo Dedup --rmdup --cram_write_options version=3.0 \
 --score_info ${i}_score.txt --metrics ${i}_dedup_metrics.txt $depCram && rm $sortedCram
+
 
 # 4. Variant calling
 

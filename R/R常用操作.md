@@ -1,27 +1,3 @@
-读取excel表格
-
-```R
-library(readxl)
-metadata  <- data.frame(read_excel(paste0(suppTableDir,"Supplementary Tables.xlsx"),sheet = 1))
-```
-
-
-
-group_by之后字符串连接
-
-```R
-snp_select %>% group_by(trait,gene) %>% summarise(chr=chr,time=paste(time,collapse=','))
-
-# group_by里的变量要写全
-snp_select <- snp_select %>% group_by(trait,gene,lead_SNP,chr,start,end) %>% summarise(time=paste(time,collapse=','))
-```
-
-
-
-
-
-
-
 因子处理
 
 https://mp.weixin.qq.com/s/k51GNMPycAr0PmSsgxK_pQ
@@ -39,12 +15,31 @@ new_gender
 
 
 
-tibble
+ifelse
 
 ```R
-tibble(
-  x = rnorm(n = 100, mean = 0, sd = 1)
-)
+x <- c(1,2,NA,NA,5)
+ifelse(is.na(x),0,x)
+#[1] 1 2 0 0 5
+```
+
+
+
+字符串操作
+
+```R
+sapply(strsplit(f$InTerm_InList,'\\/'),function(x) x[1]) # str_split也可
+
+```
+
+
+
+## 其他
+
+读入R data
+
+```
+load('weights_4D/Ghir_D13G025160.wgt.RDat')
 ```
 
 
@@ -57,13 +52,6 @@ pre <- args[1]
 ```
 
 
-
-字符串
-
-```R
-sapply(strsplit(f$InTerm_InList,'\\/'),function(x) x[1]) # str_split也可
-
-```
 
 
 

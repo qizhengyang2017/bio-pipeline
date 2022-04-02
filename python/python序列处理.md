@@ -1,8 +1,8 @@
 王翠颖师姐给我的诺禾的培训资料
 
-/Users/zhengyangqi/工作时期/其他文件/集群和语言资料-王翠颖/5-python培训/python练习文档说明.doc
 
 
+/Users/zhengyangqi/Downloads/工作时期/其他文件/集群和语言资料-王翠颖/5-python培训/python练习文档说明.doc
 
 
 

@@ -2,6 +2,33 @@
 
 
 
+
+
+>   --allow-no-sex   : Do not treat ambiguous-sex samples as having missing
+>                      phenotypes in analysis commands.  (Automatic /w --no-sex.)
+>
+> 
+>
+
+这个参数到底是啥意思？
+
+
+
+
+
+
+
+
+提取位点
+
+```bash
+	plink --bfile genotype/plink/merge_filter --extract final_allTrait_snp.txt --make-bed --out final_allTrait_snp
+```
+
+
+
+
+
 1. vcf转plink格式
 
 The [--make-bed](https://zzz.bwh.harvard.edu/plink/data.shtml#bed) option does the same as --recode but creates binary files; these can also be filtered, etc, as described below.plink 使用说明

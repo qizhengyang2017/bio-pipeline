@@ -11,3 +11,26 @@ ls *png *csv *st |xargs -I {} cp "{}" /data/X101SC19031497-Z01-J002-B14/result/T
 
 ```
 
+
+
+
+
+~/work_new/ga
+
+mac中的xargs没有-i参数
+
+xargs，把标准输入作为参数。 -I {} 指定参数位置
+
+zotero-19687
+
+```bash
+# grep_con条件少可以成功，条件多就成功不了了（比如208个）。也不知道为什么。
+cat grep_con|xargs -I {} grep -E {} Orthogroups.tsv
+```
+
+grep_con文件如下
+
+```
+Garb_01G007110|Garb_01G012740|Garb_01G012770|Garb_01G012970|Garb_01G026730|Garb_01G027170|Garb_01G027840|Garb_01G028840
+```
+

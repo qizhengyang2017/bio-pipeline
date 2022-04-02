@@ -8,7 +8,14 @@ find . -name "independent*"
 
 ```sh
 # mac上搜索，排除Library目录
-find . -path ./Library -prune -o  -name "*docx"
+find . -path ./Library -prune -o  -name "*ipynb"
+
+
+# 搜索jupyter notebook
+# 括号里的-o代表或v
+find ~ \( -path ~/Library -o -path ~/opt \) -prune -o -type f -name "*ipynb"|grep -v ".ipynb_checkpoints"
+
+find ~ \( -path ~/Library -o -path ~/opt \) -prune -o -type f -name "test.txt"
 ```
 
 移动目录
