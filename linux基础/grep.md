@@ -1,5 +1,11 @@
 ## grep
 
+递归搜索，显示行号
+
+grep -nR comment.char *
+
+
+
 -w选项匹配单词（文件中写入`$'\t'`，不匹配tab）
 
 

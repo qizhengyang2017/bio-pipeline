@@ -23,3 +23,17 @@ git push
 git config --global --list
 ```
 
+
+
+
+
+打算git的目录里有git初始化的目录怎么办？
+
+
+
+
+
+
+
+\# 显示commit历史，以及每次commit发生变更的文件
+$ git log --stat
